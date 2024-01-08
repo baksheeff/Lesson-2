@@ -46,7 +46,8 @@ static void Max(){
         int secondDigit = num % 10;
 
         if (firstDigit == secondDigit){
-            Console.WriteLine($"число {firstDigit} равно {secondDigit}");
+            Console.WriteLine($"первая цифра числа {num} равна второй цифре этого числа - и эта цифра = {secondDigit}");
+            return;
         }
 
         if (firstDigit > secondDigit){
@@ -63,31 +64,32 @@ static void Max(){
 static void DivideTheNumber(){
     Console.WriteLine("Введите натуральное число N:"); 
 
-    int n = Convert.ToInt32(Console.ReadLine());
+    int num = Convert.ToInt32(Console.ReadLine());
+    int n = num;
     List<int> digits = new();
+    int count = 0;
 
     if (n <= 0 ){
         Console.WriteLine("Ваше число не натуральное!");
     }
-    if (n < 10){
-        Console.WriteLine(n);
-    } else {
         while (n > 0){
             int currentDigit= n % 10;
             n /= 10;
-            if (n >= 0){
-                digits.Add(currentDigit);
-            }
+            digits.Add(currentDigit);
         }
+        
         digits.Reverse();
+
+        Console.Write($"Число {num} состоит из  цифр: ");
+
         foreach(var i in digits){
             Console.Write(i);  
-            if (i != digits[^1]){
+            count++;
+            if (count < digits.Count){
                 Console.Write(",");
             }  
         }
         Console.WriteLine();
-    }
     Console.WriteLine("__________________________________________________________________________________________________________");
 }
 

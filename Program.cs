@@ -61,16 +61,28 @@ static void Max(){
     Console.WriteLine("__________________________________________________________________________________________________________");
 }
 
+static void Test(int n){
+    int qn = n % 10;
+    n/=10;
+    if (n > 0){
+        Test(n);
+        Console.Write(",");
+    }
+    Console.Write(qn);
+}
+
 static void DivideTheNumber(){
     Console.WriteLine("Введите натуральное число N:"); 
-
-    int num = Convert.ToInt32(Console.ReadLine());
+    
+    String? s = Console.ReadLine();
+    int num = Convert.ToInt32(s);
     int n = num;
     List<int> digits = new();
     int count = 0;
 
     if (n <= 0 ){
         Console.WriteLine("Ваше число не натуральное!");
+        return;
     }
         while (n > 0){
             int currentDigit= n % 10;
@@ -95,13 +107,14 @@ static void DivideTheNumber(){
 
   static public void Main(string[] args) {
     int a;
-    int[] numbers = {0,1,2,3,4};
+    int[] numbers = {0,1,2,3,4,5};
     while (true){
         Console.WriteLine("Введите номер задачи:");
         Console.WriteLine("1 - проверить кратность 7 и 23 одновременно;");
         Console.WriteLine("2 - определить  номер координатной четверти;");
         Console.WriteLine("3 - определить  наибольшее число из отрезка [10,99];");
-        Console.WriteLine("4 - разбить число на отдельные цифры;");
+        Console.WriteLine("4 - разбить число на отдельные цифры через рекурсию;");
+        Console.WriteLine("5 - разбить число на отдельные цифры через списки;");
         Console.WriteLine("0 - выход.");
 
         a = Convert.ToInt32(Console.ReadLine());
@@ -125,8 +138,16 @@ static void DivideTheNumber(){
                 Max();
                 break;
             case 4:
-                DivideTheNumber();
+                Console.WriteLine("Введите натуральное число N:");
+                String? s = Console.ReadLine();
+                int num = Convert.ToInt32(s);
+                Test(num);
+                Console.WriteLine();
+                Console.WriteLine("__________________________________________________________________________________________________________");
                 break;
+            case 5:
+                DivideTheNumber();
+                break;    
         }
     }
 }
